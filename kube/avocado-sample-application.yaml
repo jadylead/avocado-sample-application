@@ -28,13 +28,13 @@ spec:
     name: http
   selector:
     app: avocado-sample-application
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: avocado-sample-application
-  labels:
-    account: avocado-sample-application
+# ---
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: avocado-sample-application
+#   labels:
+#     account: avocado-sample-application
 ---
 apiVersion: apps/v1
 kind: Deployment
