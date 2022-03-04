@@ -39,7 +39,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: avocado-sample-application-v1
+  name: avocado-sample-application
   labels:
     app: avocado-sample-application
     version: v1
