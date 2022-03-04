@@ -1,0 +1,66 @@
+# Copyright Istio Authors
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
+##################################################################################################
+# avocado-sample-application service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: avocado-sample-application
+  labels:
+    app: avocado-sample-application
+    service: avocado-sample-application
+spec:
+  ports:
+  - port: 4005
+    name: http
+  selector:
+    app: avocado-sample-application
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: avocado-sample-application
+  labels:
+    account: avocado-sample-application
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: avocado-sample-application-v1
+  labels:
+    app: avocado-sample-application
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: avocado-sample-application
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: avocado-sample-application
+        version: v1
+    spec:
+      containers:
+      - name: avocado-sample-application
+        image: jadylead/avocado-sample-application:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4005
+        securityContext:
+          runAsUser: 1000
+---
