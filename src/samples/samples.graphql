@@ -1,0 +1,12 @@
+
+scalar Date
+
+type Sample @key(fields: "id") {
+  id: ID!
+  name: String!
+}
+ 
+extend type Query {
+  hello: String
+  getSamples: [Sample]
+}
